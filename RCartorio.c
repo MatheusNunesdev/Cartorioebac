@@ -132,49 +132,77 @@ int deletar()
 //função de uso para o menu
 int main()
 {
-	int opcao=0;
-	int laco=1;
+	setlocale(LC_ALL, "Portuguese"); // Definindo o texto para Português				
 //Definindo Variáveis de uso
-	for (laco=1;laco=1;)
-// repetição do programa
+	int opcao = 0;
+	int laco = 1;
+	char senha[]="admin";
+	int comparacao=1;
+	int rep=3; // variavel para determinar o numero de tentativa do usuário
+	
+	while(comparacao != 0)  //Função para realizar o login de usuário
 	{
-		setlocale(LC_ALL, "Portuguese");
-// Definindo o texto para Português		
-		system("cls");
-//limpeza		
 		printf("\t### Cartório da EBAC ###\n\n");
-		printf("- Escolha a opção desejada do menu:\n\n");
+		printf("Login de Administrador!\n\nDigite a senha: ");
+		scanf("%s",senha);
+	
+		comparacao = strcmp(senha, "admin");
+		
+		system("cls"); //limpeza
+		if(comparacao != 0)
+		{
+			rep -= 1;
+			printf("Senha incorreta,tente novamente!\n");
+			printf("Numero de tentativa restantes: %d\n\n", rep);
+			
+		}
+		if(rep == 0)
+		{
+			printf("Numero de tentativa chegou ao limite!\n");
+			break;
+		}
+			system("pause");
+			system("cls"); //limpeza			
+	}
+	
+	if (comparacao == 0)
+	{
+		for (laco=1;laco=1;) // função de de acesso ao menu
+		{	
+			system("cls");		
+			printf("Escolha a opção desejada do menu:\n\n");
 // Início do menu
-		printf("\t 1 - Registrar Nomes\n\t 2 - Consultar Nomes\n\t 3 - Deletar Nomes\n\t 4 - Sair do Sistema\n\n");
-		printf("- Digite sua Opção:");
-		scanf("%d", &opcao);
+			printf("\t 1 - Registrar Nomes\n\t 2 - Consultar Nomes\n\t 3 - Deletar Nomes\n\t 4 - Sair do Sistema\n\n");
+			printf("Digite sua Opção:");
+			scanf("%d", &opcao);
 //Armazena opção de escolha do usuário
 	
-		system("cls");//limpeza
+			system("cls");//limpeza
 	
-		switch(opcao)
+			switch(opcao)
 // Inicio da seleção, avaliando a variavel.
-		{
-			case 1:
-				registro();
-				break;
-			case 2:
-				consulta();
-				break;
-			case 3:
-				deletar();
-    			break;
-    		case 4:
-    			printf("Obrigado por ultizar nosso Sistema!");
-    			return 0;
-    			break;
-    		default: // caso não seja nenhuma opção especificada
-    			printf("Esse opção não estar disponível!\n");
-				system("pause");
-				break;
+			{
+				case 1:
+					registro();
+					break;
+				case 2:
+					consulta();
+					break;
+				case 3:
+					deletar();
+    				break;
+    			case 4:
+    				printf("Obrigado por ultizar nosso Sistema!");
+    				return 0;
+    				break;
+    			default: // caso não seja nenhuma opção especificada
+    				printf("Esse opção não estar disponível!\n");
+					system("pause");
+					break;
+			}
 		}
-//fim da seleção.
 	}
 }
+//fim da seleção.
 
 
